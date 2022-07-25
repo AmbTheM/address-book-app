@@ -6,3 +6,12 @@ export function persistData(option) {
     });
   };
 }
+
+export function saveSettings(settings) {
+  return (dispatch) => {
+    dispatch({
+      type: "SETTING",
+      payload: settings,
+    });
+  };
+}
