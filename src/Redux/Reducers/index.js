@@ -1,19 +1,12 @@
 import { combineReducers } from "redux";
-import persistedReducer from "./persistReducer";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage/session";
+import dataReducer from "./dataReducer";
 import settingsReducer from "./settingsReducer";
-
-const persistConfig = {
-  key: "root",
-  storage,
-};
-
-const pReducer = persistReducer(persistConfig, persistedReducer);
+import modalReducer from "./modalReducer";
 
 const rootReducer = combineReducers({
   settingsReducer,
-  pReducer,
+  dataReducer,
+  modalReducer,
 });
 
 export default rootReducer;

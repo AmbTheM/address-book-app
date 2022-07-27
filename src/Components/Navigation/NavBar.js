@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import { Layout, Menu } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -9,10 +8,10 @@ function NavBar() {
   const SettingsPage = <Link to="/settings"> Settings </Link>;
 
   return (
-    <Layout>
+    <Layout className="navBar">
       <Header>
         <Menu
-          theme="dark"
+          theme="light"
           mode="horizontal"
           defaultSelectedKeys={["1"]}
           items={[

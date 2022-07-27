@@ -1,17 +1,5 @@
-export function persistData(option) {
-  return (dispatch) => {
-    dispatch({
-      type: "PERSIST",
-      payload: option,
-    });
-  };
-}
+import { storeData } from "./DataActions";
+import { ModalAction } from "./ModalActions";
+import { saveSettings } from "./SettingActions";
 
-export function saveSettings(settings) {
-  return (dispatch) => {
-    dispatch({
-      type: "SETTING",
-      payload: settings,
-    });
-  };
-}
+export { storeData, ModalAction, saveSettings };

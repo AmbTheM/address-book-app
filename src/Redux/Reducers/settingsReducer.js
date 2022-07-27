@@ -1,6 +1,8 @@
+import { SETTING } from "../ActionTypes/ActionTypes";
+
 export default function settingsReducer(state = {}, action) {
   switch (action.type) {
-    case "SETTING":
+    case SETTING:
       state = action.payload;
       return state;
     default:

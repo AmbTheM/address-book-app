@@ -1,4 +1,7 @@
-import { Button, Input, Form, Select } from "antd";
+import { Button, Form, Select } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as ActionCreators from "../../Redux/Actions";
 import React from "react";
 
 const { Option } = Select;
@@ -43,10 +46,17 @@ const Nationalities = [
   { Label: "United States", Value: "us" },
 ];
 function SettingsPage() {
+  const dispatch = useDispatch();
+  const { saveSettings, storeData } = bindActionCreators(
+    ActionCreators,
+    dispatch
+  );
+
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log(values);
+    storeData({ storage: [] });
+    saveSettings(values);
   };
 
   const onReset = () => {
@@ -55,7 +65,7 @@ function SettingsPage() {
 
   return (
     <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
-      <Form.Item name="note" label="Note">
+      <Form.Item name="nationalities" label="Nationalities">
         <Select
           mode="multiple"
           style={{
