@@ -1,4 +1,4 @@
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const htmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -6,11 +6,10 @@ const TerserPlugin = require("terser-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const path = require("path");
 
-
 const config = {
   entry: {
     styles: "./src/styles/main.less",
-    app: "./src/index.js",
+    app: "./src/index.tsx",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -20,8 +19,8 @@ const config = {
   resolve: {
     extensions: [".ts", ".js", ".json", ".jsx", ".tsx"],
     alias: {
-      'react-dom': '@hot-loader/react-dom'
-    }
+      "react-dom": "@hot-loader/react-dom",
+    },
   },
   module: {
     rules: [
@@ -36,9 +35,9 @@ const config = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
       },
       {
         test: /\.css$/i,
@@ -58,12 +57,11 @@ const config = {
             options: {
               lessOptions: {
                 modifyVars: {
-                  'primary-color': '#3b68ff'
+                  "primary-color": "#3b68ff",
                 },
-                
               },
-              javascriptEnabled: true
-            }
+              javascriptEnabled: true,
+            },
           },
         ],
       },
@@ -95,8 +93,8 @@ const config = {
             },
           },
         ],
-      }
-    ]
+      },
+    ],
   },
   plugins: [
     new Dotenv(),
@@ -109,10 +107,9 @@ const config = {
       title: "Urgent Care",
       template: "./public/index.html",
       chunks: ["app", "styles"],
-    })
+    }),
   ],
-
-}
+};
 
 module.exports = (env, argv) => {
   if (argv.mode === "development") {
@@ -120,9 +117,8 @@ module.exports = (env, argv) => {
     config.mode = "development";
     config.devServer = {
       hot: true,
-      historyApiFallback: true
-
-    }
+      historyApiFallback: true,
+    };
   }
 
   if (argv.mode === "production") {
@@ -139,5 +135,5 @@ module.exports = (env, argv) => {
       ],
     };
   }
-  return config
-}
+  return config;
+};
