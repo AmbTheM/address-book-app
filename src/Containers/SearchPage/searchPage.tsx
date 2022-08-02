@@ -27,10 +27,7 @@ function SearchPage() {
 
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  const { ModalAction, searchData } = bindActionCreators(
-    ActionCreators,
-    dispatch
-  );
+  const { ModalAction } = bindActionCreators(ActionCreators, dispatch);
 
   useEffect(() => {
     saveData();
@@ -47,7 +44,7 @@ function SearchPage() {
       />
       <div className="content">
         <Contents
-          data={Data}
+          data={searchedData.length === 0 ? Data : searchedData}
           lastRefCallback={lastRefCalllback}
           Modal={ModalAction}
           displayModal={setVisible}
@@ -55,7 +52,14 @@ function SearchPage() {
       </div>
       <>
         {visible === true ? (
-          <UserModal ModalData={Data[ModalIndex]} displayModal={setVisible} />
+          <UserModal
+            ModalData={
+              searchedData.length === 0
+                ? Data[ModalIndex]
+                : searchedData[ModalIndex]
+            }
+            displayModal={setVisible}
+          />
         ) : (
           <></>
         )}

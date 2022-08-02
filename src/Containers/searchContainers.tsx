@@ -17,7 +17,7 @@ function useSearch() {
     debounce((inputText) => {
       inputText.target.value.length > 0
         ? searchData(
-            Data?.filter((item: UserData | never) => {
+            Data?.filter((item: UserData) => {
               const lowercasefirst = item.name.first.toLowerCase();
               const lowercaselast = item.name.last.toLowerCase();
               const lowercaseterm = inputText.target.value.toLowerCase();
@@ -28,7 +28,7 @@ function useSearch() {
               );
             })
           )
-        : searchData(Data);
+        : searchData([]);
     }, 1000),
     [Data]
   );
@@ -39,8 +39,7 @@ function useSearch() {
     e.persist();
     delay(e);
   };
-  //-------------------------------------------------------------------------------
-
+  //------------------------------------------------------------------------------
   return onTyping;
 }
 
