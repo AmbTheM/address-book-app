@@ -55,3 +55,8 @@ export interface UserData {
   };
   nat: string;
 }
+
+export interface SettingsData {
+  nationalities: string[];
+  gender: string;
+}

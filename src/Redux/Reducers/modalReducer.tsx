@@ -1,6 +1,6 @@
-import { Action, MODAL } from "../ActionTypes/ActionTypes";
+import { ActionModal, MODAL } from "../ActionTypes/ActionTypes";
 
-export default function modalReducer(state: any = 0, action: Action) {
+export default function modalReducer(state: number = 0, action: ActionModal) {
   switch (action.type) {
     case MODAL:
       state = action.payload;

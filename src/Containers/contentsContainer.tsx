@@ -8,19 +8,22 @@ function useContent() {
   const observer = useRef<any>(null);
   const [saveData, concatData] = useData();
 
-  const lastRefCalllback = useCallback((node: any) => {
-    if (observer.current) observer.current.disconnect();
-    observer.current = new IntersectionObserver((entries) => {
-      if (
-        entries[0].isIntersecting &&
-        Data.length < 1000 //&&
-        //isLoading === false
-      ) {
-        concatData();
-      }
-    });
-    if (node) observer.current.observe(node);
-  }, []);
+  const lastRefCalllback = useCallback(
+    (node: any) => {
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (
+          entries[0].isIntersecting &&
+          Data.length < 1000 //&&
+          //isLoading === false
+        ) {
+          concatData();
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [concatData]
+  );
 
   return lastRefCalllback;
 }

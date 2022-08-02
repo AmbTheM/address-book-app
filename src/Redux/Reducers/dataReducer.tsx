@@ -1,7 +1,10 @@
 import { UserData } from "../../Services/Database/DataType";
-import { STORING, Action } from "../ActionTypes/ActionTypes";
+import { STORING, ActionStoreData } from "../ActionTypes/ActionTypes";
 
-export default function dataReducer(state: any = [], action: Action) {
+export default function dataReducer(
+  state: UserData[] = [],
+  action: ActionStoreData
+) {
   switch (action.type) {
     case STORING:
       state = action.payload;

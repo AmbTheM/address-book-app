@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-function setStore(initialState: any) {
+function setStore(initialState: any = []) {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
 
