@@ -5,6 +5,8 @@ import type { RootState } from "../Redux/configureStore";
 
 function useContent() {
   const Data = useSelector((state: RootState) => state.dataReducer);
+  const isLoading = useSelector((state: RootState) => state.loadingReducer);
+
   const observer = useRef<any>(null);
   const [saveData, concatData] = useData();
 
@@ -14,8 +16,8 @@ function useContent() {
       observer.current = new IntersectionObserver((entries) => {
         if (
           entries[0].isIntersecting &&
-          Data.length < 1000 //&&
-          //isLoading === false
+          Data.length < 1000 &&
+          isLoading === false
         ) {
           concatData();
         }

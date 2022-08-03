@@ -4,6 +4,7 @@ export const STORING: string = "STORING";
 export const SETTING: string = "SETTING";
 export const MODAL: string = "MODAL";
 export const SEARCHING: string = "SEARCHING";
+export const LOADING: string = "LOADING";
 
 export interface ActionStoreData {
   type: string;
@@ -23,4 +24,9 @@ export interface ActionModal {
 export interface ActionSearch {
   type: string;
   payload: UserData[];
+}
+
+export interface ActionLoad {
+  type: string;
+  payload: boolean;
 }
