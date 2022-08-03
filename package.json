@@ -27,6 +27,7 @@
     "esbuild": "^0.14.42",
     "esbuild-jest": "^0.5.0",
     "file-loader": "^6.2.0",
+    "fuse.js": "^6.6.2",
     "html-webpack-plugin": "^4.0.0-beta.14",
     "install": "^0.13.0",
     "less": "^3.11.1",
