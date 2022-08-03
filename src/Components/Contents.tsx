@@ -64,7 +64,6 @@ const Contents: React.FC<Props> = ({
           }
         })}
       </Row>
-      <Spin className="loader" size="large" spinning={isLoading} />
     </>
   );
 };
