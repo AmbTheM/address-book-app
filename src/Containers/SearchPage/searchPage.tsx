@@ -28,10 +28,14 @@ function SearchPage() {
 
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  const { ModalAction } = bindActionCreators(ActionCreators, dispatch);
+  const { ModalAction, searchData } = bindActionCreators(
+    ActionCreators,
+    dispatch
+  );
 
   useEffect(() => {
     saveData();
+    searchData([]);
   }, [savedSettings]);
 
   return (

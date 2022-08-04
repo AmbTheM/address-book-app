@@ -17,11 +17,11 @@ function useContent() {
       observer.current = new IntersectionObserver((entries) => {
         if (
           entries[0].isIntersecting &&
-          Data.length < 100 &&
+          Data.length < 1000 &&
           isLoading === false
         ) {
           concatData();
-        } else if (entries[0].isIntersecting && Data.length >= 100) {
+        } else if (entries[0].isIntersecting && Data.length >= 1000) {
           message.success({
             content: "All users have been loaded",
             key: 1,
