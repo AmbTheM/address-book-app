@@ -1,4 +1,4 @@
-import { Button, Form, Select } from "antd";
+import { Button, Form, message, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as ActionCreators from "../../Redux/Actions";
@@ -59,6 +59,7 @@ function SettingsPage() {
   const onFinish = (values: any) => {
     storeData([]);
     saveSettings(values);
+    message.success("Settings Saved");
   };
 
   const onReset = () => {
