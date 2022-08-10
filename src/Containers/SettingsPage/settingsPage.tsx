@@ -54,6 +54,10 @@ function SettingsPage() {
     dispatch
   );
 
+  const savedSettings = useSelector(
+    (state: RootState) => state.settingsReducer
+  );
+
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
@@ -63,7 +67,10 @@ function SettingsPage() {
   };
 
   const onReset = () => {
+    storeData([]);
     form.resetFields();
+    saveSettings({ nationalities: [], gender: "" });
+    message.success({ content: "Settings Cleared" });
   };
 
   return (
@@ -76,6 +83,7 @@ function SettingsPage() {
       Option={Option}
       tailLayout={tailLayout}
       onReset={onReset}
+      Selected={savedSettings}
     />
   );
 }
