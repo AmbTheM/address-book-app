@@ -24,13 +24,18 @@ function SearchPage() {
   const searchedData = useSelector(
     (state: RootState) => state.searchResultReducer
   );
+  const isLoading = useSelector((state: RootState) => state.loadingReducer);
 
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  const { ModalAction } = bindActionCreators(ActionCreators, dispatch);
+  const { ModalAction, searchData } = bindActionCreators(
+    ActionCreators,
+    dispatch
+  );
 
   useEffect(() => {
     saveData();
+    searchData([]);
   }, [savedSettings]);
 
   return (
@@ -45,9 +50,12 @@ function SearchPage() {
       <div className="content">
         <Contents
           data={searchedData.length === 0 ? Data : searchedData}
-          lastRefCallback={lastRefCalllback}
+          lastRefCallback={
+            searchedData.length === 0 ? lastRefCalllback : () => {}
+          }
           Modal={ModalAction}
           displayModal={setVisible}
+          isLoading={isLoading}
         />
       </div>
       <>

@@ -20,6 +20,7 @@ const InputField: React.FC<Props> = ({
     <>
       <div className={className}>
         <Input
+          data-testid="inputField"
           size={size}
           placeholder={placeholder}
           prefix={prefix}

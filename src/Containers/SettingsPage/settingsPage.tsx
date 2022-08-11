@@ -1,9 +1,10 @@
-import { Button, Form, Select } from "antd";
+import { Button, Form, Select, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as ActionCreators from "../../Redux/Actions";
 import React from "react";
 import type { RootState } from "../../Redux/configureStore";
+import SettingForm from "../../Components/Form";
 
 const { Option } = Select;
 const layout = {
@@ -27,7 +28,7 @@ const Nationalities = [
   { Label: "Australia", Value: "au" },
   { Label: "Brazil", Value: "br" },
   { Label: "Canada", Value: "ca" },
-  { Label: "China", Value: "ch" },
+  { Label: "Switzerland", Value: "ch" },
   { Label: "Germany", Value: "de" },
   { Label: "Denmark", Value: "dk" },
   { Label: "Spain", Value: "sp" },
@@ -53,57 +54,37 @@ function SettingsPage() {
     dispatch
   );
 
+  const savedSettings = useSelector(
+    (state: RootState) => state.settingsReducer
+  );
+
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
     storeData([]);
     saveSettings(values);
+    message.success({ content: "Settings Saved" });
   };
 
   const onReset = () => {
+    storeData([]);
     form.resetFields();
+    saveSettings({ nationalities: [], gender: "" });
+    message.success({ content: "Settings Cleared" });
   };
 
   return (
-    <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
-      <Form.Item name="nationalities" label="Nationalities">
-        <Select
-          mode="multiple"
-          style={{
-            width: "100%",
-          }}
-          placeholder="select one country"
-          onChange={handleChange}
-          optionLabelProp="label"
-        >
-          {Nationalities.map((items) => (
-            <Option key={items.Value} value={items.Value} label={items.Label}>
-              <div className="demo-option-label-item">
-                <span role="img" aria-label={items.Label}></span>
-                {items.Label}
-              </div>
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
-      <Form.Item name="gender" label="Gender">
-        <Select
-          placeholder="Select a option and change input text above"
-          allowClear
-        >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-        </Select>
-      </Form.Item>
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-        <Button htmlType="button" onClick={onReset}>
-          Reset
-        </Button>
-      </Form.Item>
-    </Form>
+    <SettingForm
+      layout={layout}
+      form={form}
+      onFinish={onFinish}
+      handleChange={handleChange}
+      Nationalities={Nationalities}
+      Option={Option}
+      tailLayout={tailLayout}
+      onReset={onReset}
+      Selected={savedSettings}
+    />
   );
 }
 
