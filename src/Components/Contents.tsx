@@ -22,7 +22,7 @@ const Contents: React.FC<Props> = ({
 
   return (
     <>
-      <Row gutter={[8, 8]}>
+      <Row gutter={[0, 0]}>
         {results?.map((items, index) => {
           if (results.length === index + 1) {
             return (
@@ -34,6 +34,7 @@ const Contents: React.FC<Props> = ({
                     displayModal(true);
                     Modal(index);
                   }}
+                  className="card"
                 >
                   <Meta
                     avatar={<Avatar src={items.picture.thumbnail} />}
@@ -52,6 +53,7 @@ const Contents: React.FC<Props> = ({
                     displayModal(true);
                     Modal(index);
                   }}
+                  className="card"
                 >
                   <Meta
                     avatar={<Avatar src={items.picture.thumbnail} />}
